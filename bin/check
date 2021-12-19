@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "***** black *****"
+poetry run black --check .
+
+echo "***** flake8 *****"
+poetry run flake8
+
+echo "***** isort *****"
+poetry run isort --check .
+
+echo "***** xenon *****"
+poetry run xenon --max-absolute B --max-modules A --max-average A neocitizen tests

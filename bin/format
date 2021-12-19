@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "***** black *****"
+poetry run black .
+
+echo "***** isort *****"
+poetry run isort .

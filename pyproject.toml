@@ -1,0 +1,77 @@
+[tool.poetry]
+authors = [
+  "poyo46 <poyo4rock@gmail.com>",
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: POSIX :: Linux",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+]
+description = "Python client library for Neocities API"
+homepage = "https://github.com/poyo46/neocitizen"
+keywords = ["neocities", "api", "cli"]
+license = "Apache-2.0"
+name = "neocitizen"
+readme = "README.md"
+repository = "https://github.com/poyo46/neocitizen"
+version = "1.0.0"
+
+[tool.poetry.dependencies]
+click = "^8.0.3"
+python = ">=3.6.2,<4.0"
+requests = "^2.26.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.11b1"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+pytest = "^5.2"
+pytest-cov = "^3.0.0"
+toml = "^0.10.2"
+xenon = "^0.8.0"
+
+[tool.black]
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+include = '\.pyi?$'
+line-length = 88
+target-version = ['py36', 'py37', 'py38', 'py39']
+
+[tool.isort]
+include_trailing_comma = true
+line_length = 88
+multi_line_output = 3
+
+[tool.poetry.scripts]
+neocitizen = "neocitizen.cli:cli"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]

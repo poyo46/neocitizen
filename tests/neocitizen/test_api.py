@@ -37,16 +37,23 @@ class TestNeocitiesApi(object):
         api.delete_all(waiting_seconds=0)
 
     @pytest.mark.parametrize(
-        "api_key, username, password, timeout",
+        "api_key, username, password, timeout, verbose",
         [
-            ("*", None, None, None),
-            (None, "*", "*", None),
-            ("*", None, None, 30),
+            ("*", None, None, None, None),
+            (None, "*", "*", None, None),
+            ("*", None, None, 30, None),
+            ("*", None, None, None, True),
         ],
     )
-    def test_can_initialize_with_arguments(self, api_key, username, password, timeout):
+    def test_can_initialize_with_arguments(
+        self, api_key, username, password, timeout, verbose
+    ):
         NeocitiesApi(
-            api_key=api_key, username=username, password=password, timeout=timeout
+            api_key=api_key,
+            username=username,
+            password=password,
+            timeout=timeout,
+            verbose=verbose,
         )
 
     def test_can_initialize_with_environment_variable(self):
@@ -79,9 +86,6 @@ class TestNeocitiesApi(object):
         [None, "upload_test1", "upload_test2/"],
     )
     def test_can_upload_directory(self, dir_on_server, data_dir):
-        # initialize
-        self.api.delete_all()
-
         # count the number of files before uploading
         file_list_response = self.api.fetch_file_list()
         count_before = len(file_list_response["files"])
@@ -142,7 +146,6 @@ class TestNeocitiesApi(object):
             assert index_response.text == f.read()
 
     def test_can_download_all_files(self, data_dir):
-        self.api.delete_all(waiting_seconds=0)
         self.api.upload_dir(dir=data_dir)
         file_list_response = self.api.fetch_file_list()
         expected_count = len(file_list_response["files"])
@@ -175,3 +178,9 @@ class TestNeocitiesApi(object):
     def test_can_fetch_api_key(self):
         response = self.api.fetch_api_key()
         assert response["result"] == "success"
+
+    def test_can_verbose_output(self, data_dir):
+        self.api.verbose = True
+        self.api.upload_dir(dir=data_dir)
+        self.api.delete_all(waiting_seconds=0)
+        self.api.verbose = False

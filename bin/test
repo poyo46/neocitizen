@@ -1,4 +1,4 @@
 #!/bin/bash
 
-poetry run pytest -s -p no:warnings -p no:cacheprovider --cov=neocitizen --cov-branch --cov-report=term-missing
+poetry run pytest -p no:warnings -p no:cacheprovider --cov=neocitizen --cov-branch --cov-report=term-missing
 poetry run pytest --doctest-modules neocitizen

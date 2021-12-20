@@ -10,10 +10,7 @@ import neocitizen.api
 from neocitizen.api import NeocitiesApi
 from neocitizen.errors import ApiError, ArgumentError, CredentialsRequiredError
 
-API_KEY = "NEOCITIES_API_KEY"
-TEST_API_KEY = f"TEST_{API_KEY}"
-USERNAME = "NEOCITIES_USERNAME"
-PASSWORD = "NEOCITIES_PASSWORD"
+from .env import API_KEY, PASSWORD, TEST_API_KEY, USERNAME
 
 
 def del_env(*keys) -> None:

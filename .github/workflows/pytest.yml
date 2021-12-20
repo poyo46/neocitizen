@@ -2,7 +2,7 @@ name: pytest
 
 on:
   push:
-    branches: [main]
+    branches: [main, 1_enhance_the_tests]
   pull_request:
     branches: [main]
 

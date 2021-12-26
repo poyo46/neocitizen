@@ -1,10 +1,8 @@
 name: neocities
 
 on:
-  push:
-    branches: [main, 1_enhance_the_tests]
-  pull_request:
-    branches: [main]
+  schedule:
+    - cron: "0 3 * * 1"
 
 jobs:
   build:

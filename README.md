@@ -1,5 +1,7 @@
 # neocitizen: Python client library for Neocities API
 
+[![pytest](https://github.com/poyo46/neocitizen/workflows/pytest/badge.svg)](https://github.com/poyo46/neocitizen/actions?query=workflow%3Apytest)
+[![neocities](https://github.com/poyo46/neocitizen/workflows/neocities/badge.svg)](https://github.com/poyo46/neocitizen/actions?query=workflow%3Aneocities)
 [![PyPI Version](https://img.shields.io/pypi/v/neocitizen.svg)](https://pypi.org/pypi/neocitizen/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/neocitizen.svg)](https://pypi.org/pypi/neocitizen/)
 [![License](https://img.shields.io/pypi/l/neocitizen.svg)](https://github.com/poyo46/neocitizen/blob/main/LICENSE)

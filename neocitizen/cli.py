@@ -33,7 +33,10 @@ def cli(key, username, password, verbose):
 
 @cli.command(help="Upload local data to your Neocities site.")
 @click.option(
-    "--dir", "-d", help="Local directory path.", nargs=1, type=click.Path(exists=True)
+    "--dir",
+    "-d",
+    help="Local directory path.",
+    nargs=1,
 )
 @click.option(
     "--dir-on-server",
@@ -43,17 +46,24 @@ def cli(key, username, password, verbose):
 @click.option(
     "--file",
     "-f",
-    nargs=1,
-    help="(local file path):(path on server)",
+    multiple=True,
+    help="(file path) or (local file path):(path on server)",
 )
 def upload(dir, dir_on_server, file):
     if dir:
         api.upload_dir(dir=dir, dir_on_server=dir_on_server)
-    if file:
-        paths = file.split(":")
-        if len(paths) != 2:
+    if len(file) == 0:
+        return
+    file_map = {}
+    for item in file:
+        paths = item.split(":")
+        if len(paths) == 1:
+            file_map[paths[0]] = paths[0]
+        elif len(paths) == 2:
+            file_map[paths[0]] = paths[1]
+        else:
             raise BadParameter
-        api.upload_files(file_map={paths[0]: paths[1]})
+    api.upload_files(file_map=file_map)
 
 
 @cli.command(help="Delete the files on your Neocities site.")

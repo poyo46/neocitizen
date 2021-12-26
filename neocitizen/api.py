@@ -263,7 +263,7 @@ class NeocitiesApi(object):
         files: Dict[str, bytes] = {}
         for local_path, path_on_server in file_map.items():
             # check file extension
-            extension = get_extension(local_path)
+            extension = get_extension(Path(local_path))
             if extension not in VALID_EXTENSIONS:
                 message = f"Skip file '{str(local_path)}' because the extension '{extension}' is not allowed."  # noqa: E501
                 logger.warn(message)

@@ -7,8 +7,7 @@ from click.testing import CliRunner, Result
 
 from neocitizen.api import NeocitiesApi
 from neocitizen.cli import cli
-
-from .env import TEST_API_KEY
+from tests.env import TEST_API_KEY
 
 
 def get_result(args: List[str], input: Optional[str] = None) -> Result:

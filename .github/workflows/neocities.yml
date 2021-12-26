@@ -1,0 +1,26 @@
+name: neocities
+
+on:
+  push:
+    branches: [main, 1_enhance_the_tests]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry install
+      - name: Test Neocities server
+        env:
+          TEST_NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
+        run: |
+          poetry run pytest -p no:warnings -p no:cacheprovider tests/test_neocities.py

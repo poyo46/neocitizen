@@ -27,4 +27,4 @@ jobs:
         env:
           TEST_NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
         run: |
-          poetry run pytest -p no:warnings -p no:cacheprovider --cov=neocitizen --cov-branch --cov-report=term-missing
+          poetry run pytest -p no:warnings -p no:cacheprovider --ignore=tests/test_neocities.py
